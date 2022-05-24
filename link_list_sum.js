@@ -1,4 +1,6 @@
-addTwoLists(first, second)
+class Solution {
+    //Function to add two numbers represented by linked list.
+    addTwoLists(first, second)
     {
         let rev_1 = this.reverse(first);
         let rev_2 = this.reverse(second);
@@ -7,30 +9,36 @@ addTwoLists(first, second)
         let carry = 0;
         let temp = 0;
         
-        // while(rev_1 || rev_2) {
+        while(rev_1 || rev_2) {
             
-        //     if(rev_1 && rev_2)
-        //         temp = carry + rev_1.data + rev_2.data;
-        //     else if(rev_1)
-        //         temp = carry + rev_1.data;
-        //     else 
-        //         temp = carry + rev_2.data;
+            if(rev_1 && rev_2){
+                temp = carry + rev_1.data + rev_2.data;
+                rev_1 = rev_1.next;
+                rev_2 = rev_2.next;
+            }
+            else if(rev_1){
+                temp = carry + rev_1.data;
+                rev_1 = rev_1.next;
+            }
+            else {
+                temp = carry + rev_2.data;
+                rev_2 = rev_2.next;
+            }
             
-        //     if(!sum_tail) {
-        //         sum_tail = new Node(temp % 10);
-        //     }
-        //     else {
-        //         sum_tail.next = new Node(temp % 10);
-        //         sum_tail = sum_tail.next;
-        //     }    
+            if(!sum_tail) {
+                sum_tail = new Node(temp % 10);
+            }
+            else {
+                sum_tail.next = new Node(temp % 10);
+                sum_tail = sum_tail.next;
+            }    
             
-        //     carry = temp / 10;
-                
-        //     rev_1 = rev_1.next;
-        //     rev_2 = rev_2.next;
-        // } 
+            carry = temp / 10;
+        } 
         
-        return this.reverse(sum_head);
+        let ans = this.reverse(sum_head);
+        
+        return ans; 
     }
     
     reverse(head) {
@@ -46,3 +54,4 @@ addTwoLists(first, second)
         head = pre;
         return head;
     }
+}
