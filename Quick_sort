@@ -1,0 +1,38 @@
+
+class Solution {
+    //Function to swap elements pairwise.
+    swapVal(first, sec) {
+        let temp = first.data;
+        first.data = sec.data;
+        sec.data = temp;
+    }
+    
+    partition(head, tail) {
+        let pivot = head.data;
+        let i = head;
+        let j = head.next;
+        while(j != tail) {
+            if(j.data <= pivot){
+                i = i.next;
+                this.swapVal(i, j);
+            }
+            j = j.next;
+        }
+        this.swapVal(i, head);
+        return i;
+    }
+    
+    utility(head, tail) {
+        if(head !== tail) {
+            let left_tail = this.partition(head, tail);
+            this.utility(head, left_tail);
+            this.utility(left_tail.next, tail);
+        }
+        return head;
+    }
+    
+    quickSort(head)
+    {
+        return this.utility(head, null);
+    }
+}
