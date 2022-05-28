@@ -1,0 +1,40 @@
+class Solution {
+	// Should return true if tree is Sum Tree, else false
+  	isSumTree(root){
+        let left_sum = 0;
+        let right_sum = 0;
+        
+        if(!root) {
+            return ;
+        }
+        
+        if(root.left) {
+            left_sum = this.sum(root.left);
+            if(!this.isSumTree(root.left)) {
+                return false;
+            }
+        }
+        
+        if(root.right) {
+            right_sum = this.sum(root.right);
+            if(!this.isSumTree(root.right)) {
+                return false;
+            }
+        }
+        
+        if(!root.right && !root.left)
+            return true;
+        
+        if(root.key !== left_sum + right_sum) 
+            return false;
+        
+        return true;
+  	}
+  	
+  	sum(root) {
+  	    if(!root)
+  	        return 0;
+  	    
+  	    return root.key + this.sum(root.left) + this.sum(root.right);
+  	}
+}
