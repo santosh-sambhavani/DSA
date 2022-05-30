@@ -1,7 +1,12 @@
 class Solution {
   	hasPathSum(root,S){
-  	    if(!root.left && !root.right && root.key === S)
-  	        return true;
+  	    if(!root) return false;
+  	    if(!root.left && !root.right) {
+  	        if(S - root.key === 0)
+  	            return true;
+  	        return false;
+  	    }
+  	 //   return this.hasPathSum(root.left, S-root.key) || this.hasPathSum(root.right, S-root.key);
   	    return this.utility(root.left, S, root.key) || this.utility(root.right, S, root.key);
   	}
   	
@@ -16,20 +21,3 @@ class Solution {
   	    return this.utility(root.left, S, root.key + total) || this.utility(root.right, S, root.key + total);
   	}
 }
-
-
-class Solution
-{
-    public:
-    bool hasPathSum(Node *root, int S) {
-        if(!root) return 0;
-        if(!root->left && !root->right)
-        {
-            if(S-root->data ==0) return true;
-            else return false;
-        }
-        return hasPathSum(root->left, S-root->data) 
-            || hasPathSum(root->right, S-root->data);
-
-    }
-};
