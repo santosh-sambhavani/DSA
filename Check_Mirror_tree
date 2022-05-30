@@ -1,0 +1,17 @@
+class Solution {
+  	areMirror(root1,root2){
+  		let ans = 0;
+  		
+  		if(!root1 || !root2) {
+  		    if(root1 === root2)
+  		        return 1;
+  		    return 0;
+  		}
+  		
+  		if(root1.data !== root2.data) 
+  		    return 0;
+  		    
+  		return this.areMirror(root1.left, root2.right) && this.areMirror(root2.left, root1.right);
+
+  	}
+}
