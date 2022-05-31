@@ -1,0 +1,23 @@
+class Solution
+{ 
+  kthAncestor(root,k,node){
+    var path = [];
+    if(this.findNode(root, k, node, path)) {
+        if(k < path.length) 
+            return path[path.length - 1 - k];
+        return -1;        
+    }
+    return -1;
+  }  
+  
+  findNode(root, k, node, path) {
+      if(!root) return false;
+      path.push(root.data);
+      if(root.data === node)
+        return true;
+      if(this.findNode(root.left, k, node, path) || this.findNode(root.right, k, node, path) )
+        return true;
+      path.pop();
+      return false;
+  }
+}  
