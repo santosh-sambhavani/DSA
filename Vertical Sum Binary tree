@@ -1,0 +1,32 @@
+class Solution {
+  	verticalSum(root){
+  	    let hd = 0;
+  	    let ans = new Map();
+  	    let resArr = [];
+  	    
+  	    ans = this.utility(root, hd, ans);
+  	    
+  	    [...ans.entries()].forEach((element) => {
+  	        console.log(element);
+  	        resArr.push(element[1]);
+  	    })
+  	    
+  	    return resArr;
+  	}
+  	
+  	utility(node, hd, map) {
+  	    if(!node) { 
+  	        return map;
+  	    } 
+  	    map = this.utility(node.left, hd-1, map);
+  	    
+  	    if(map.has(hd)){
+  	        map.set(hd, map.get(hd) + node.data);
+  	    } else {
+  	        map.set(hd, node.data);
+  	    }
+  	    
+  	    map = this.utility(node.right, hd+1, map);
+  	    return map;
+  	}
+}
