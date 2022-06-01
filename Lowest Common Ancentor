@@ -1,0 +1,28 @@
+
+class Solution {
+    //Function to return the lowest common ancestor in a Binary Tree.
+    lca(root, n1, n2)
+    {   
+        let res;
+        if(root.data == n1 && (root.left && this.hasNode(root.left, n1, n2) || root.right && this.hasNode(root.right, n1, n2)))
+            return root;
+        if(root.data == n2 && (root.left && this.hasNode(root.left, n1, n2) || root.right && this.hasNode(root.right, n1, n2)))
+            return root;
+        if(root.left && this.hasNode(root.left, n1, n2) && root.right && this.hasNode(root.right, n1, n2)) {
+            return root;
+        } 
+        if(root.left)
+            res = this.lca(root.left, n1, n2);
+        if(!res && root.right)
+            res = this.lca(root.right, n1, n2);
+        return res;
+    }
+    
+    hasNode(root, n1, n2) {
+        if(!root) 
+            return false;
+        if(root.data == n1 || root.data == n2) 
+            return true;
+        return this.hasNode(root.left, n1, n2) || this.hasNode(root.right, n1, n2);
+    }
+}
