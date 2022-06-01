@@ -1,0 +1,39 @@
+class Solution {
+    //Function to return a list containing the level order 
+	//traversal in spiral form.	
+    findSpiral(root)
+    {
+        if(!root) return [];
+        let ans = [];
+        let stack1 = [];
+        let stack2 = [];
+        let temp = null;
+        stack1.push(root);
+        
+        while(stack1.length !== 0 || stack2.length !== 0) {
+            
+            while(stack1.length !== 0) {
+                temp = stack1.pop();
+                ans.push(temp.data);
+                if(temp.right)
+                    stack2.push(temp.right);
+                if(temp.left)
+                    stack2.push(temp.left);
+            }
+            
+            while(stack2.length !== 0) {
+                temp = stack2.pop();
+                ans.push(temp.data);
+                if(temp.left)
+                    stack1.push(temp.left);
+                if(temp.right)
+                    stack1.push(temp.right);
+            }
+            
+        }    
+        
+        return ans;
+    
+    }
+    
+}
