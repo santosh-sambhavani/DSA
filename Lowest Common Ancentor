@@ -26,3 +26,27 @@ class Solution {
         return this.hasNode(root.left, n1, n2) || this.hasNode(root.right, n1, n2);
     }
 }
+
+
+{
+   public:
+   //Function to return the lowest common ancestor in a Binary Tree.
+   Node* lca(Node* root ,int n1 ,int n2 )
+   {
+      //Your code here 
+    
+      if(!root) return root; 
+        Node* left,*right; 
+      if(root->data == n1 || root->data == n2) 
+      return root; 
+        
+        left =  lca(root->left,n1,n2);
+        right= lca(root->right,n1,n2); 
+          
+          if(left && right) 
+          return root;
+          
+          else 
+             return left?left:right;
+   }
+};
