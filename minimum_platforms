@@ -1,19 +1,22 @@
 class Solution {
     findPlatform(arr, dep, n)
     {   
-        let schedule = [], max = 1, acquired = [0];
+        let schedule = [], max = 1, acquiredBy = [0];
         arr.forEach((ele, index) => {
             schedule.push({ arr: ele, dep: dep[index]});
         })
         schedule.sort((a, b) => {return (a.arr - b.arr);})
-        for(i=1;i<n;i++) {
-            let current = schedule[i];
-            acquired.forEach((ele) => {
-                if(schedule[ele].dep < current.arr) {
-                    // remove ele from acquired
-                    
-                } 
-            })
+        for(let i=1;i<n;i++) {
+            let currentTime = schedule[i].arr;
+            acquiredBy.forEach((ele, index) => {
+                if(currentTime > schedule[ele].dep) {
+                    // remove element from acquiredBy array
+                    acquiredBy.splice(index, 1);
+                }
+            });
+            acquiredBy.push(i);
+            if(acquiredBy.length > max) max = acquiredBy.length;
         }
+        return max;
     }
 }
