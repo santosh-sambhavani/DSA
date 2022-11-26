@@ -1,0 +1,55 @@
+class Solution
+{
+    //Function to find all elements in array that appear more than n/k times.
+    countOccurence(arr, n, k)
+    {
+        let count = {}, ans = [];
+        for(let index = 0; index < k-1; index++) {
+            if(count[arr[index]])
+                count[arr[index]] += 1;
+            else 
+                count[arr[index]] = 1;
+        }
+        
+        // loop over all other elements...
+        for (let index = k-1; index < n; index++) {
+            /* if current element is in count map than 
+                increse it's value by 1*/    
+            if(count[arr[index]] !== undefined) {
+              count[arr[index]] += 1; 
+            } 
+            
+            /* if element is not in count map than */
+            else {
+                
+                /* add if any empty place available in count map */
+                for(let key in count) {
+                    if(count[key] === 0) {
+                        delete count[key];
+                        count[arr[index]] = 1;
+                        break;
+                    }
+                }
+                
+                /* if there is no empty place 
+                decrease count of all elements in count map */
+                if(count[arr[index]] === undefined) {
+                    for(let key in count) 
+                        count[key] -= 1;
+                }
+            }
+        }
+        for(let key in count) 
+            count[key] = 0;
+        
+        for(let index = 0; index < n; index++) {
+            if(count[arr[index]] !== undefined) {
+                count[arr[index]] += 1;
+                if(count[arr[index]] > Math.floor(n/k))
+                    ans.push(arr[index]);
+            } 
+        }
+                
+        return ans;
+    }
+}
