@@ -1,0 +1,20 @@
+const isOverlapped = (arr1, arr2) => arr1[1] >= arr2[0];
+
+const merge = function(intervals) {
+    if(intervals.length < 2) return intervals;
+    let sortedIntervals = intervals.sort((a, b) => a[0]-b[0]);
+    let ans = [sortedIntervals[0]];
+    for(let index = 1; index < sortedIntervals.length; index++) {
+        let current = sortedIntervals[index];
+        let pre = ans[ans.length - 1];
+        
+        if(isOverlapped(pre, current)) {
+            pre[0] = Math.min(current[0], pre[0]);
+            pre[1] = Math.max(current[1], pre[1]);
+        } else {
+            ans.push(current);
+        }
+    }
+
+    return ans;
+};
