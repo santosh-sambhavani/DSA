@@ -9,6 +9,17 @@
   - if element is on left slop move start pointer to mid
   - if element is in right slop move end pointer to mid
 
+### Problem: Find pivot element in sorted rotated array
+- For sorted rotated array the key position is first element of array as we can identify the position of any element by comparing that element with first element
+- let say if any element in array is greater than first element then it will be on left slop
+- And if the element is less than first element than it will be on right slop
+- Using this we can narrow down our serch space towards pivot element
+
+## Book allocation problem:
+- The logic is if we can allocate the books successfully with reference of any number then by the referring all the numbers greater than that we can allocate books surely.
+- And same if we can't allocate books by any number then by refering all the numbers less than that we can't allocate books as well
+- By using this logic we can narrow down our search space
+
 ### Problem: Find pivot element
 - Use three pointer
   - put 2 pointers at first index and one at last index
