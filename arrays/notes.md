@@ -17,3 +17,4 @@
 - If one string is a permutation of another,
   we can say that all of the characters in both strings have the same frequency,
   which is why they are permutations of each other.
+- Check problems merge sorted arrays, sum-two-numbers as array
