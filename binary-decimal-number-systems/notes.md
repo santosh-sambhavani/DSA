@@ -13,7 +13,7 @@ ans = ans * 10 + lastDigit;
   - we can do & with mask (00------00111) with ~n to get only needfull bits
   - To create a mask use loop
       - while (n != 0)
-          - mast = (mask << 1) | 1; (to push 1 to the right)
+          - mast = (mask << 1) | 1; (to add set bit to the right)
           - n >> 1;
   - then ans = (~n & mask)
 
