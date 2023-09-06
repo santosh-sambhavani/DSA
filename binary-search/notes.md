@@ -3,13 +3,13 @@
   - when finding first occurence move end towards mid even if you find value
   - for last occurence move start pointer towards mid
 
-### Problem: Find peek element
+### Problem: Find peek element: [exa: 1, 2, 3, 2, 1]
 - Use binary search
   - if element is greater than it's next & previous element that's your ans
   - if element is on left slop move start pointer to mid
   - if element is in right slop move end pointer to mid
 
-### Problem: Find pivot element in sorted rotated array
+### Problem: Find pivot element in sorted rotated array  [exa: 3, 4, 5, 1, 2]
 - For sorted rotated array the key position is first element of array as we can identify the position of any element by comparing that element with first element
 - let say if any element in array is greater than first element then it will be on left slop
 - And if the element is less than first element than it will be on right slop
