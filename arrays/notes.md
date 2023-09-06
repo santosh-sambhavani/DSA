@@ -12,3 +12,8 @@
 			- now if the sum of this threes are greater than wanted value than decreament pointer 2 
 			- if less than desired value than increament pointer 1
 			- and if matches than add to ans
+
+### Points:
+- If one string is a permutation of another,
+  we can say that all of the characters in both strings have the same frequency,
+  which is why they are permutations of each other.
