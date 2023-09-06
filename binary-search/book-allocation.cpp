@@ -1,5 +1,5 @@
 /*
-Given that there are N books and M students. Also given are the number of pages in each book in ascending order. 
+Given that there are N books and M students. Also given are the number of pages in each book. 
 The task is to assign books in such a way that the maximum number of pages assigned to a student is minimum, 
 with the condition that every student is assigned to read some consecutive books. Print that minimum number of pages.
 */
