@@ -1,0 +1,17 @@
+### Points: 
+- Reference variables means access same memory with different names
+- example: int& j = i; // j is reference variable of memory accessed by i
+- drawback of using it is from any function variable can be changed
+- If we define any variable using int a = 5; syntax it will be stored in static memory but if we want to store it in heap memory than we have new keyword in cpp
+- e.g. int *ch = new char; new keyword returns address so we have to use pointer to access it
+- Above example we create 1 byte in heap memory & 8 bytes of pointer in static memory
+- To create array in heap memory ==> int *arr = new int[5], even we can use dynamic sized arrya using this
+- Variables created using static memory will cleared automatically after it's access scope ends but variables created in heap memory should be cleared by our self
+- syntax: delete a || for array delete [] arr
+- create 2D array in heap memory
+  - int ** arr = new int*[rows]; // create array of pointers than create array for each pointer
+  - for (0 to n) 
+    - arr[i] = new int[cols];
+- Macros: These are piece of code which is replaced wherever they are used in a code https://www.geeksforgeeks.org/macros-and-its-types-in-c-cpp/
+- Inline functions: works the same as macros it is useful to reduce function call overheads
+  - It is only if the function is oneliner
