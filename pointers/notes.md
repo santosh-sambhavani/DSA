@@ -1,0 +1,17 @@
+### Points: 
+- MCQ practice: https://github.com/loveBabbar/CodeHelp-DSA-Busted-Series/blob/main/Lecture027%20Double%20Pointers%20and%20MCQs/pointerMCQ.cpp
+- Pointer is a variable which stores the address of other variables int *p = &a;
+- Pointer always uses 8 bytes of stack memory
+- Actually to manage the variables compilers uses symbol table under the hood where variable name & address of memory is mapped with each other for further use
+- We can access pointer with dereferance operator *
+- We can pass the address of variables to other functions and in that functions we can access the value of that address using * operator but this is bad practice
+- Array using pointers
+  - Whenever we create array using int arr[10] in symbol table there will be only one entry arr => address of arr[0] means arr or &arr[0] are same
+  - to access ith index of array using pointer *(arr + I) <=> arr[i] And that's why arr[i] or i[arr] both are valid
+  - If we pass pointer to other function than value at the pointer can be changed from that function but address pointer points to will remain same after function execution ends although if it will changed in functions implementation where it passed because it creates copy of pointer variable in that function
+  - Charachter array using pointer behaves differently, if we try to print the pointer typed character it will keep printing value till it gets null variable
+  - benefit of using pointer we can pass the address of first index of array to function and we can access any value of that array using pointer
+- Double pointer: it is a pointer stores address of pointer
+  - e.g. int i = 5;  int *p1 = &i;  int **p2 = &p1;
+  - to access i using p2 use **p2
+  - we can change address accessed by p1 using p2 even if after passing it to some function 
