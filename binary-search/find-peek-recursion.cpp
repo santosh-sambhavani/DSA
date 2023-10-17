@@ -34,3 +34,21 @@ int main() {
     int ans = findPeak(arr, 0, n-1, n);
     cout << "\nPeak element is: " << ans;
 }
+
+/*
+cases:
+6
+1 10 11 15 7 5
+
+3 
+1 1 11
+
+3 
+11 1 1
+
+5 
+1 2 3 4 5
+
+5 
+5 4 3 2 1
+*/
