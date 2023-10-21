@@ -4,10 +4,11 @@ using namespace std;
 long long power(long long x, long long n) {
    if (n == 1) return x;
    long long mod = pow(10, 9) + 7;
+   long long temp = (power(x, n >> 1) % mod);
    if (n & 1) {
-       return x * (power(x, n >> 1) % mod) * (power(x, n >> 1) % mod);
+       return x *  temp * temp;
    } else {
-       return (power(x, n >> 1) % mod) * (power(x, n >> 1) % mod);
+       return temp * temp;
    }
 }
 
