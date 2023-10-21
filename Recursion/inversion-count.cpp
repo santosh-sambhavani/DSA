@@ -12,7 +12,7 @@ class Solution{
         i = start;
         j = mid+1;
         
-        vector<int> temp(end-start+1);
+        vector<long long> temp(end-start+1);
         while (i <= mid && j <= end) {
             if(nums[i] <= nums[j]) {
                 temp[k++] = nums[i++];
@@ -80,14 +80,3 @@ int main() {
 }
 
 // } Driver Code Ends
-
-
-/*
-15
-3 7 0 1 5 8 3 2 34 66 87 23 12 12 12
-
-42
-468 335 1 170 225 479 359 463 465 206 146 282 328 462 492 496 443 328 437 392 105 403 154 293 383 422 217 219 396 448 227 272 39 370 413 168 300 36 395 204 312 323
-ans: 494
-*/
-
