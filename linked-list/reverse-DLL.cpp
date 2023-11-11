@@ -1,6 +1,9 @@
 //{ Driver Code Starts
 //Initial Template for C++
 
+/*
+* think of NULL <- 1 <-> 2 -> (rest LL) case for solve 1 case
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
