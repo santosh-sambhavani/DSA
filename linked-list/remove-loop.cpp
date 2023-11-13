@@ -88,6 +88,10 @@ struct Node
 class Solution
 {
     private:
+    /*
+    * this is floydd's cycle detetction algo code which is actually to check if loop exists
+    * here we use it to find node where slow & fast meets to confirm cycle's existance
+    */
     Node* getIntersectionNode(Node* head)
     {
         Node* slow = head;
@@ -104,7 +108,13 @@ class Solution
         }
         return NULL;
     }
-    
+
+    /*
+    * After getting the intersection point we can find last node of loop or first node of loop
+    * we can start traversing from head of LL & intersection point And at some point both meets at some node
+    * because distance of head w.r.t loop's first node  = (distance of intersection node w.r.t loop's first node + 1)
+    * https://www.youtube.com/watch?v=VxOFflTXlXo&list=PLDzeHZWIZsTryvtXdMr6rPh4IDexB5NIA&index=52&t=1715s    
+    */
     Node* findLastNode(Node* head)
     {
         Node* intersectionNode = getIntersectionNode(head);
@@ -116,7 +126,12 @@ class Solution
             temp = temp->next;
             intersectionNode = intersectionNode->next;
         }
-        return intersectionNode;
+        /*
+        * and now
+        * temp = first node of cycle
+        * intersectionNode = last node of cycle
+        */
+        return intersectionNode; 
     }
     
     public:
