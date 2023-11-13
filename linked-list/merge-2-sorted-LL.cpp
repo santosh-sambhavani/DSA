@@ -63,7 +63,7 @@ int main()
 
     Node *head = sortedMerge(head1, head2);
     printList(head);
-
+    
     return 0;
 }
 
@@ -108,6 +108,7 @@ Node* sortedMerge(Node* head1, Node* head2)
         curr2 = head1;
     }
     while(curr1 != NULL && curr2 != NULL) {
+        // cout << "\n curr1: " << curr1->data << " || curr2: " << curr2->data << " || ";
         if(next1 == NULL && curr2 != NULL) { 
             curr1 -> next = curr2;
             break;
@@ -119,13 +120,15 @@ Node* sortedMerge(Node* head1, Node* head2)
             curr1->next = curr2;
             curr2->next = next1;
             
+            curr1 = curr2;
             curr2 = next2;
         } else {
             curr1 = curr1->next;
             if(next1 != NULL)
                 next1 = next1->next;
         }
+        // printList(head2);
     }
     
-    return curr1;
-}  
+    return head1->data <= head2->data ? head1 : head2;
+}   
