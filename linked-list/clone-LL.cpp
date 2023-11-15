@@ -37,40 +37,89 @@ class Solution
     
     public:
     // approach 2: using mapper
-    Node *copyList(Node *head)
-    {
-        // step 1: copy ll
-        Node* temp = head;
-        Node* cloneHead = NULL;
-        Node* cloneTail = NULL;
-        while(temp != NULL) {
-            cloneHead = insertAtTail(cloneTail, cloneHead, temp->data);
-            temp = temp->next;
-        }
+    // Node *copyList(Node *head)
+    // {
+    //     // step 1: copy ll
+    //     Node* temp = head;
+    //     Node* cloneHead = NULL;
+    //     Node* cloneTail = NULL;
+    //     while(temp != NULL) {
+    //         cloneHead = insertAtTail(cloneTail, cloneHead, temp->data);
+    //         temp = temp->next;
+    //     }
         
-        // step 2: create a mapper
-        unordered_map<Node*, Node*> mapper;
-        Node* originalNode = head;
-        Node* cloneNode = cloneHead;
-        while(originalNode != NULL && cloneNode != NULL) {
-            mapper[originalNode] = cloneNode;
-            originalNode = originalNode -> next;
-            cloneNode = cloneNode -> next;
-        }
+    //     // step 2: create a mapper
+    //     unordered_map<Node*, Node*> mapper;
+    //     Node* originalNode = head;
+    //     Node* cloneNode = cloneHead;
+    //     while(originalNode != NULL && cloneNode != NULL) {
+    //         mapper[originalNode] = cloneNode;
+    //         originalNode = originalNode -> next;
+    //         cloneNode = cloneNode -> next;
+    //     }
         
-        // step 3: copy the random pointers
-        originalNode = head;
-        cloneNode = cloneHead;
-        while(originalNode != NULL && cloneNode != NULL) {
-            cout << "\n originalNode: " << originalNode->data
-                 << "mapper[or->random]: " << mapper[originalNode->arb];
-            cloneNode->arb = mapper[originalNode->arb];
-            originalNode = originalNode -> next;
-            cloneNode = cloneNode -> next;
-        }
+    //     // step 3: copy the random pointers
+    //     originalNode = head;
+    //     cloneNode = cloneHead;
+    //     while(originalNode != NULL && cloneNode != NULL) {
+    //         cout << "\n originalNode: " << originalNode->data
+    //              << "mapper[or->random]: " << mapper[originalNode->arb];
+    //         cloneNode->arb = mapper[originalNode->arb];
+    //         originalNode = originalNode -> next;
+    //         cloneNode = cloneNode -> next;
+    //     }
         
-        return cloneHead;
-    }
+    //     return cloneHead;
+    // }
+
+    // Approach 3: SC O(1)
+    // Node *copyList(Node *head)
+    // {
+    //     // step 1: copy ll
+    //     Node* temp = head;
+    //     Node* cloneHead = NULL;
+    //     Node* cloneTail = NULL;
+    //     while(temp != NULL) {
+    //         cloneHead = insertAtTail(cloneTail, cloneHead, temp->data);
+    //         temp = temp->next;
+    //     }
+        
+    //     // step 2: change links of both LLs
+    //     Node* originalNode = head;
+    //     Node* cloneNode = cloneHead;
+    //     while(originalNode != NULL && cloneHead != NULL) {
+    //         Node* tempNext = originalNode->next;
+    //         originalNode->next = cloneNode;
+    //         originalNode = tempNext;
+            
+    //         tempNext = cloneNode->next;
+    //         cloneNode->next = originalNode;
+    //         cloneNode = tempNext;
+    //     }
+        
+    //     // step 3: copy random pointers
+    //     originalNode = head;
+    //     while(originalNode != NULL) {
+    //         originalNode->next->arb = 
+    //             originalNode->arb 
+    //                 ? originalNode->arb->next
+    //                 : originalNode->arb;
+    //         originalNode = originalNode -> next -> next;
+    //     }
+        
+    //     // step 4: revrt changes in step 2
+    //     originalNode = head;
+    //     cloneNode = cloneHead;
+    //     while(originalNode != NULL && cloneNode != NULL) {
+    //         originalNode->next = cloneNode->next;
+    //         originalNode = originalNode -> next;
+            
+    //         cloneNode->next = originalNode ? originalNode->next : NULL; 
+    //         cloneNode = cloneNode->next;
+    //     }
+        
+    //     return cloneHead;
+    // }
 
 };
 
@@ -213,4 +262,10 @@ int main() {
         cout << 0 << endl;
     return 0;
 }
+
 // } Driver Code Ends
+/*
+4 2
+1 2 3 4
+1 2 2 4
+*/
