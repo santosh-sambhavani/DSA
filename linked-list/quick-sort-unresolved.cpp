@@ -1,4 +1,5 @@
 //{ Driver Code Starts
+/* REsolve Segmentation fault */
 #include <iostream>
 #include <cstdio>
 using namespace std;
@@ -134,36 +135,42 @@ struct node* partition(struct node* head) {
     
     cout << "\n after swap : ";
     printList(head);
-    cout << " || pivot: " << pivotNode->data;
-    
+
     /* take all smalller value to left & hifher to right of pivot node*/
     struct node* left = head;
     struct node* right = pivotNode->next;
-    right = reverse(right);
+    right = reverse(pivotNode);
+    struct node* rightHead = right;
     
-    cout << "\n left: ";
+    cout << "\n == left: ";
     printList(head);
     
     cout << " == right: ";
     printList(right);
-    // while(left != pivotNode->next && right != NULL) {
+    
+    while(left != pivotNode && right != pivotNode) {
         
-    //     while(left->data < pivotNode->data) {
-    //         left = left->next;
-    //     }
+        while(left->data < pivotNode->data) {
+            left = left->next;
+        }
         
-    //     while(right->data >= pivotNode->data) {
-    //         right = right->next;
-    //     }
+        while(right->data >= pivotNode->data) {
+            right = right->next;
+        }
         
-    //     if(left != pivotNode->next && right != NULL) {
-    //         int tempInt = left->data;
-    //         left->data = right->data;
-    //         right->data = tempInt;
-    //     }
+        cout << "\n left: " << left->data << " right: " << right->data;
         
-    //     pivotNode->next = reverse(pivotNode->next);
-    // }
+        // if(left != pivotNode && right != pivotNode) {
+        //     int tempInt = left->data;
+        //     left->data = right->data;
+        //     right->data = tempInt;
+        // }
+        left->data = right->data;
+        right->data = 64;
+        
+        cout << "\n167 left: " << left->data << " right: " << right->data;    
+    }
+    // pivotNode->next = reverse(rightHead);
     
     return pivotNode;
 }
