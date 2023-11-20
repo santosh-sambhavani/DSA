@@ -102,18 +102,22 @@ struct node* partition(struct node* head) {
     
     // find count for pivot value    
     int count = 0;
-    struct node* temp = head;
-    while(temp) {
+    struct node* temp = head->next;
+    while(temp != NULL) {
+        cout << "\n condition: " << (temp != NULL);
+        cout << " || temp: " << temp->data << " || " 
+             << pivotValue << " || " 
+             << count << " || ";
         if(temp->data < pivotValue) {
             count++;
         }
         temp = temp->next;
     }
     
-    
+    cout << "\n ===== 118 " << head->data;
     /* swap pivot node value with head value */
-    struct node* pivotNode = head;
-    while(count>=0) {
+    struct node* pivotNode = head->next;
+    while(count>0) {
         count--;
         pivotNode = pivotNode->next;
     }
@@ -151,9 +155,11 @@ struct node* partition(struct node* head) {
 struct node* quickSortRecur(struct node* &head) {
     if(head == NULL || head->next == NULL) 
         return head;
-    
+    cout << "\n =======> 154: ";
+    printList(head);
     struct node* partitionNode = partition(head);
     
+    cout << "\n158: partitionNode: " << partitionNode->data;
     struct node* left = head;
     struct node* right = partitionNode->next;
     partitionNode->next = NULL;
@@ -172,3 +178,11 @@ struct node* quickSortRecur(struct node* &head) {
 void quickSort(struct node **headRef) {
     struct node* res = quickSortRecur(*headRef);
 }
+
+/*
+2
+6
+97 50 64 79 11 58 
+9
+70 99 4 88 71 8 12 70 27
+*/
