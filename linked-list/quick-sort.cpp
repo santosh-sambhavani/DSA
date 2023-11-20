@@ -89,12 +89,19 @@ struct node* reverse(struct node* head) {
     if(head == NULL || head->next == NULL) {
         return head;
     }
-    struct node* head1 = reverse(head->next);
+    struct node* prev = NULL;
+    struct node* curr = head;
+    struct node* forward = head->next;
     
-    head->next->next = head;
-    head->next = NULL;
+    while(curr) {
+        curr->next = prev;
+        
+        prev = curr;
+        curr = forward;
+        forward = forward ? forward->next : NULL;
+    }
     
-    return head1;
+    return prev;
 }
 
 struct node* partition(struct node* head) {
@@ -106,11 +113,11 @@ struct node* partition(struct node* head) {
     while(temp != NULL) {
         cout << "\n condition: " << (temp != NULL);
         cout << " || temp: " << temp->data << " || " 
-             << pivotValue << " || " 
-             << count << " || ";
+             << pivotValue << " || ";
         if(temp->data < pivotValue) {
             count++;
         }
+        cout << " count: " << count;
         temp = temp->next;
     }
     
@@ -125,29 +132,38 @@ struct node* partition(struct node* head) {
     head->data = pivotNode->data;
     pivotNode->data = tempInt;
     
+    cout << "\n after swap : ";
+    printList(head);
+    cout << " || pivot: " << pivotNode->data;
     
     /* take all smalller value to left & hifher to right of pivot node*/
     struct node* left = head;
     struct node* right = pivotNode->next;
-    while(left != pivotNode->next && right != NULL) {
-        right = reverse(right);
+    right = reverse(right);
+    
+    cout << "\n left: ";
+    printList(head);
+    
+    cout << " == right: ";
+    printList(right);
+    // while(left != pivotNode->next && right != NULL) {
         
-        while(left->data < pivotNode->data) {
-            left = left->next;
-        }
+    //     while(left->data < pivotNode->data) {
+    //         left = left->next;
+    //     }
         
-        while(right->data >= pivotNode->data) {
-            right = right->next;
-        }
+    //     while(right->data >= pivotNode->data) {
+    //         right = right->next;
+    //     }
         
-        if(left != pivotNode->next && right != NULL) {
-            int tempInt = left->data;
-            left->data = right->data;
-            right->data = tempInt;
-        }
+    //     if(left != pivotNode->next && right != NULL) {
+    //         int tempInt = left->data;
+    //         left->data = right->data;
+    //         right->data = tempInt;
+    //     }
         
-        pivotNode->next = reverse(pivotNode->next);
-    }
+    //     pivotNode->next = reverse(pivotNode->next);
+    // }
     
     return pivotNode;
 }
@@ -155,7 +171,7 @@ struct node* partition(struct node* head) {
 struct node* quickSortRecur(struct node* &head) {
     if(head == NULL || head->next == NULL) 
         return head;
-    cout << "\n =======> 154: ";
+    cout << "\n =========================> 154: ";
     printList(head);
     struct node* partitionNode = partition(head);
     
