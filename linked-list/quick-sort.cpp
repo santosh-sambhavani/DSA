@@ -114,9 +114,9 @@ struct node* partition(struct node* head) {
         temp = temp->next;
     }
     
-    cout << "\n ===== 118 " << head->data;
+    cout << "\n ===== 118 count: " << count;
     /* swap pivot node value with head value */
-    struct node* pivotNode = head->next;
+    struct node* pivotNode = head;
     while(count>0) {
         count--;
         pivotNode = pivotNode->next;
