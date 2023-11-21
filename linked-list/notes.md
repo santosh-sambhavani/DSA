@@ -35,3 +35,8 @@
   ```
   ![image](https://github.com/Santosh-745/DSA/assets/80413971/2a25c40b-6a60-4e13-8d1d-30bea678a26b)
   - TC = O(N) SC = O(1)
+
+### Problem: Remove duplicates from unsorted linked list
+- One approach is naive one point to single node traverse all other nodes if gets duplicate remove it TC (N^2)
+- Second one is first sort LL Then apply remove duplicates from sorted LL TC (NlogN)
+- Third one is using map TC(N) SC(N)
