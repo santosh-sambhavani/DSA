@@ -37,6 +37,17 @@
       - While (arr[j] >= pivot ) j++;
       - If(i < pivot index && j > pivot index )
         - Swap arr[i] & arr[j]
+- Standard approach: https://www.geeksforgeeks.org/quick-sort/
+  - In this approach the partition function change
+  - in that set pivot to last node then iterate from start to pivot node
+  - manage left pointer to have value > pivot node or at head of list or arr[0]
+  - if curr-value is less or equal to pivot node then swap it with left pointer node && move left to next node else only move curr-value
+![image](https://github.com/Santosh-745/DSA/assets/80413971/cad7c73e-e884-4612-b6c5-0bfba562d8b2)
+![image](https://github.com/Santosh-745/DSA/assets/80413971/f52a63b5-1ad9-4513-ab07-229ba3785d53)
+![image](https://github.com/Santosh-745/DSA/assets/80413971/5031ee91-9f7c-415a-ad3a-a3360ef05761)
+![image](https://github.com/Santosh-745/DSA/assets/80413971/c744a69f-257b-45b4-84ed-e2be9abfc67e)
+![image](https://github.com/Santosh-745/DSA/assets/80413971/30f2a713-fd20-4b2a-bfe3-e723edf82cef)
+
 
 ### Problem: Find Subsets of array
 - Subsets means set of all subset
