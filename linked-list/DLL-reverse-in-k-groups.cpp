@@ -52,23 +52,25 @@ Node* revListInGroupOfGivenSize(Node* head, int k)
     Node* forward = head->next;
     
     int count = 1;
-    while(curr && count <= k) {
+    while(curr != NULL && count <= k) {
         curr->next = backward;
         curr->prev = forward;
         
         backward = curr;
         curr = forward;
-        forward = forward ? forward->next : NULL;
+        forward = forward != NULL ? forward->next : NULL;
         count++;
     }
     
     // cout << "\nback: " << backward->data 
     //      << " curr: " << curr->data
-        //  << " forward: " << forward->data;
+    //      << " forward: " << (forward ? forward->data : NULL);
     
     Node* head1 = revListInGroupOfGivenSize(curr, k);
-    // backward->next = head1;
-    // head1->prev = backward;
+    head->next = head1;
+    if(head1) {
+        head1->prev = head;
+    }
     
     return backward;
 }
@@ -96,8 +98,10 @@ int main()
 	push(&head, getNode(10));
 	push(&head, getNode(20));
 	push(&head, getNode(50));
+	push(&head, getNode(1));
+	push(&head, getNode(45));
 	
-	int k = 2;
+	int k = 3;
 
 	cout << "Original list: ";
 	printList(head);
