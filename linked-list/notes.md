@@ -40,3 +40,8 @@
 - One approach is naive one point to single node traverse all other nodes if gets duplicate remove it TC (N^2)
 - Second one is first sort LL Then apply remove duplicates from sorted LL TC (NlogN)
 - Third one is using map TC(N) SC(N)
+
+### Problem: Merge k sorted linked lists 
+- We can apply same login of merge 2 sorted linked list by merging 2 linked lists & merge resultant LL with next LL
+- But even we can manage priority-queue & use min heap to use logic like pointer for every linked list
+- We can get LL with node has min data & move it's pointer to next node ( same as merge 2 sorted LL )
