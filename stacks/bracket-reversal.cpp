@@ -1,3 +1,4 @@
+// https://www.codingninjas.com/studio/problems/minimum-cost-to-make-string-valid_1115770?leftPanelTabValue=SUBMISSION
 #include <bits/stdc++.h> 
 int findMinimumCost(string str) {
   //odd condition
