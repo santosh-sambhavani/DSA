@@ -1,3 +1,11 @@
+/*
+https://www.geeksforgeeks.org/problems/first-negative-integer-in-every-window-of-size-k3345/1
+
+8
+-458 -598 -79 544 4 954 954 4
+3
+*/
+
 //{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
