@@ -5,26 +5,6 @@ using namespace std;
 // } Driver Code Ends
 class Solution 
 {
-    private:
-        void printVector(vector<vector<int>> v) {
-            cout << "\n=====> Vector: ";
-            for(int i = 0; i < v.size(); i++) {
-                cout << "\n";
-    	        for(int j = 0; j < v[0].size(); j++) {
-    	            cout << " " << v[i][j];
-    	        }
-    	    }
-        }
-        
-        void printQueue(queue<pair<int, int>> q) {
-            queue<pair<int, int>> q1 = q;
-            cout << "Queue is: ";
-            while(!q1.empty()) {
-                pair<int, int> front = q1.front();
-                cout << " (" << front.first << ", " << front.second << "), ";
-                q1.pop();
-            }
-        }
     public:
     //Function to find distance of nearest 1 in the grid for each cell.
 	vector<vector<int>>nearest(vector<vector<int>>grid)
@@ -45,39 +25,29 @@ class Solution
 	        }
 	    }
 	    
-	   // printQueue(q);
-	    
 	    while(!q.empty()) {
-	        int size = q.size();
-	        for (int i = 0; i < size; i++) {
-	            pair<int, int> current = q.front();
-	            for(int j = 0; j < 4; j++) { 
-	                
-                    int x = current.first + dx[j];
-                    int y = current.second + dy[j];
-	                if (
-	                    x >= 0 && x < m
-	                    && y >= 0 && y < n
-	                    && visited[x][y] != 1
-	                    && grid[x][y] == 0
-	                ) {
-	                    grid[x][y] = grid[current.first][current.second] + 1;
-	                    visited[x][y] = 1;
-	                    q.push({x, y});
-	                }
-	            }
-	            q.pop();
-	        }
+            pair<int, int> current = q.front();
+            for(int j = 0; j < 4; j++) {
+                int x = current.first + dx[j];
+                int y = current.second + dy[j];
+                if (
+                    x >= 0 && x < m
+                    && y >= 0 && y < n
+                    && visited[x][y] != 1
+                    && grid[x][y] == 0
+                ) {
+                    grid[x][y] = grid[current.first][current.second] + 1;
+                    visited[x][y] = 1;
+                    q.push({x, y});
+                }
+            }
+            q.pop();
 	    }
-	    
-	   // printVector(visited);
-	   // printVector(grid);
 	    
 	    return grid;
 	}
 };
 
-//{ Driver Code Starts.
 int main(){
 	int n, m;
 	cin >> n >> m;
