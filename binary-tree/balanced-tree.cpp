@@ -5,6 +5,8 @@ Logic was to get leftHight, rightHiht along woth the answers from left & right.
   else 
     both sides are balanced than check for self by ans = (|lh - rh| <= 1)
   return { ans, max(lh, rh) + 1 };
+
+input: 1 39 10 5 N N N
 */
 
 #include <bits/stdc++.h>
