@@ -1,4 +1,6 @@
-//{ Driver Code Starts
+/*
+	next smaller / bigger element in right / left of the every number. from this 4 type of questions can be asked. 
+*/
 #include<bits/stdc++.h>
 using namespace std;
 
