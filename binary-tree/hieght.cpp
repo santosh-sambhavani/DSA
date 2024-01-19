@@ -1,5 +1,7 @@
-//{ Driver Code Starts
-//Initial template for C++
+/*
+	Idea to solve this problem we will get height from left of the tree & right of the tree than 
+	Add one to max of both & return the value
+*/
 
 #include <bits/stdc++.h>
 using namespace std;
