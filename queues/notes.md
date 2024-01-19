@@ -2,8 +2,6 @@
 - stack using queues & queue using stacks
   - https://github.com/Santosh-745/DSA/blob/main/queues/queue-using-stack.md
   - https://github.com/Santosh-745/DSA/blob/main/queues/stack-using-queue.md
-- next smaller / bigger element in right / left of the every number. from this 4 type of questions can be asked. 
-  even max or min in all sub arrays of size k of array is similar type of problem.
 - problems with bfs patterns rotten oranges, knight walk, nearest 1 in matrix etc.
   - we can solve this problem by level wise approach
 - use priority_queue whenever you need to manage descendingly sorted array or ascendingly sorted array.
