@@ -122,7 +122,7 @@ Node* solve(Node* root, int &k, int node) {
     if (leftAns && !rightAns) {
         k--;
         if(k <= 0) {
-            k = INT_MAX;
+            k = INT_MAX; // to lock the answer
             return root;
         }
         return leftAns;
@@ -131,7 +131,7 @@ Node* solve(Node* root, int &k, int node) {
     if (rightAns && !leftAns) {
         k--;
         if(k <= 0) {
-            k = INT_MAX;
+            k = INT_MAX; // to lock the answer
             return root;
         }
         return rightAns;
