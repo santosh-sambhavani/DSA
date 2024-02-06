@@ -43,27 +43,13 @@ void levelOrderTraversal(Node* root) {
     }
 }
 
-Node* insertInToBST(Node* root, int x) {
-    if(!root) {
-        root = new Node(x);
-        return root;
-    }
-    Node* curr = root;
-    while(true) {
-        if (curr->data > x) {
-            if (!curr->left) {
-                curr->left = new Node(x);
-                break;
-            }
-            curr = curr->left;
-        } else {
-            if (!curr->right) {
-                curr->right = new Node(x);
-                break;
-            }
-            curr = curr->right;
-        }
-    }
+Node* insertInToBST(Node* root, int data) {
+    if(root == NULL)
+        return new Node(data);
+    if(root->data > data)
+        root->left = insertInToBST(root->left, data);
+    else if(root->data < data)
+        root->right = insertInToBST(root->right, data);
     return root;
 }
 
@@ -180,10 +166,7 @@ int main() {
     // Node* kNode = search(root, k);
     
     // cout << "\n=====> searched node is: " << kNode->data;
-
-    /*
-    5 OR 3 OR 6
-    */
+    
     cout << "\nEnter the node you want to delete: ";
     cin>>k;
     
