@@ -96,8 +96,59 @@ Node* search(Node* root, int k) {
     return ans;
 }
 
-void deleteNode(root) {
+int getMin(Node* root) {
+    int min;
+    while(root) {
+        min = root->data;
+        root = root->left;
+    }
+    return min;
+}
+
+Node* deleteNode(Node* root, int key) {
+    if (!root) return NULL;
     
+    if (key < root->data) {
+        root->left = deleteNode(root->left, key);
+        return root;
+    } 
+    if (key > root->data) {
+        root->right = deleteNode(root->right, key);
+        return root;
+    }
+    // if node have 0 child
+    if(!root->left && !root->right) {
+        delete root;
+        return NULL;
+    } 
+    
+    // if node have 1 child
+    if (root->left && !root->right) {  
+        Node* temp = root->left;
+        delete root;
+        return temp;
+    }
+    
+    if (!root->left && root->right) {
+        Node* temp = root->right;
+        delete root;
+        return temp;
+    }
+    
+    // if node has 2 child
+    if (root->left && root->right) {
+        int min = getMin(root->right);
+        root->data = min;
+        root->right = deleteNode(root->right, min);
+        return root;
+    }
+}
+
+void inorder(Node* root) {
+    if(!root) return ;
+    inorder(root->left);
+    cout << " " << root->data;
+    inorder(root->right);
 }
 
 int main() {
@@ -120,20 +171,26 @@ int main() {
 	Node* root = buildBinarySearchTree();
     levelOrderTraversal(root);
     
-    // 5
-    cout << "\nEnter the node you want to search: ";
     int k = 0;
-    cin>>k;
     
-    Node* kNode = search(root, k);
+    // 5
+    // cout << "\nEnter the node you want to search: ";
+    // cin>>k;
     
-    cout << "\n=====> searched node is: " << kNode->data;
+    // Node* kNode = search(root, k);
     
+    // cout << "\n=====> searched node is: " << kNode->data;
+
+    /*
+    5 OR 3 OR 6
+    */
     cout << "\nEnter the node you want to delete: ";
     cin>>k;
     
-    Node* deletedNode = deleteNode(root, k);
-    cout << "\n=====> deleted node is: " << deletedNode->data;
+    deleteNode(root, k);
+    cout << "\n inorder: ";
+    inorder(root);
+    levelOrderTraversal(root);
 }
 
 
