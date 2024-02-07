@@ -70,11 +70,11 @@ int main()
 {
 
 	/* Constructed binary tree is
-			1
+		 1
 		/ \
-		2	 3
-	/ \
-	4	 5
+	       2   3
+	      / \
+	     4	 5
 */
 	struct tNode* root = newtNode(1);
 	root->left = newtNode(2);
