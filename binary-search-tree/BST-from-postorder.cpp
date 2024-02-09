@@ -1,4 +1,11 @@
-//{ Driver Code Starts
+/*
+22
+134 37 369 334 304 249 499 190 530 568 747 649 755 754 809 529 891 959 909 873 869 843
+
+the logic is simple if current data is in given range than return node by creating node from it.
+other wise return null;
+just start from right, in preorder problem we use left first to check compare both problem for more understanding
+*/
 #include<bits/stdc++.h>
 using namespace std;
 
