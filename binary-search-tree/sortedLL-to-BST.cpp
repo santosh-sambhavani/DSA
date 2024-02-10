@@ -73,11 +73,11 @@ struct TNode
 class Solution{
   private: 
     LNode* findMiddle(LNode* head) {
-        LNode* fast = head; 
+        LNode* fast = head->next; 
         LNode* slow = head;
         LNode* pre = NULL;
         
-        while(fast && fast->next) {
+        while(fast) {
             pre = slow;
             fast = fast->next;
             if (fast) {
