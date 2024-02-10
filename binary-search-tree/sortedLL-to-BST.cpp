@@ -94,9 +94,6 @@ class Solution{
     }
   public:
     TNode* sortedListToBST(LNode *head) {
-        if (!head) {
-            return NULL;
-        }
         if (!head->next) {
             TNode* root = new TNode(head->data);
             return root;
@@ -107,7 +104,7 @@ class Solution{
         
         root->left = sortedListToBST(head);
         
-        root->right = sortedListToBST(midNode->next);
+        root->right = midNode->next ? sortedListToBST(midNode->next) : NULL;
         
         return root;
     }
