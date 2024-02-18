@@ -2,65 +2,112 @@
 #include <iostream>
 using namespace std;
 
-void insert(vector<int> &heap, int data) {
-    heap.push_back(data);
-    
-    int index = heap.size() - 1;
-    int parentIndex = index / 2;
-    while(heap[index] > heap[parentIndex] && index > 1) {
-        swap(heap[index], heap[parentIndex]);
-        index = parentIndex;
-        parentIndex = index / 2;
-    }
-}
-
-void deleteFromHeap(vector<int> &heap) {
-    int last = heap.size() - 1;
-    heap[1] = heap[last];
-    
-    heap.pop_back();
-    int index = 1;
-    int leftChild = index * 2;
-    int rightChild = (index * 2) + 1;
-    while(
-        (leftChild <= last && heap[index] < heap[leftChild]) || 
-        (rightChild <= last && heap[index] < heap[rightChild])
-    ) {
-        int maxChild = heap[leftChild] >= heap[rightChild] ? leftChild : rightChild;
-        swap(heap[index], heap[maxChild]);
-        index = maxChild;
-        leftChild = index * 2;
-        rightChild = (index * 2) + 1;
-    }
-}
-
 void print(vector<int> heap) {
     for(auto i: heap) {
         cout << i << " ";
     }
 }
 
+void heapifyBottopToUp(vector<int> &heap, int index) {
+    if (index == 0) {
+        return ;
+    }
+    
+    int parent = (index - 1) / 2;
+    if (heap[index] > heap[parent]) {        
+        swap(heap[index], heap[parent]);
+        heapifyBottopToUp(heap, parent);
+    }
+}
+
+void insert(vector<int> &heap, int data) {
+    heap.push_back(data);
+    
+    heapifyBottopToUp(heap, heap.size()-1);
+}
+
+void heapify(vector<int> &heap, int index, int n) {
+    int largest = index;
+    
+    int left = (2 * index) + 1;
+    if (left < n && heap[left] > heap[largest]) {
+        largest = left;
+    }
+    
+    int right = (2 * index) + 2;
+    if (right < n && heap[right] > heap[largest]) {
+        largest = right;
+    }
+    
+    if (index != largest) {
+        swap(heap[index], heap[largest]);
+        heapify(heap, largest, n);
+    }
+    
+}
+
+void deleteFromHeap(vector<int> &heap) {
+    heap[0] = heap[heap.size()-1];
+    heap.pop_back();
+    heapify(heap, 0, heap.size());
+}
+
+void heapifyArray(vector<int> &arr) {
+    int n = arr.size();
+    
+    for (int index = n/2; index >= 0; index--) {
+        heapify(arr, index, n);
+    }
+}
+
+vector<int> heapSort(vector<int> arr) {
+    heapifyArray(arr);
+    
+    for (int i = arr.size()-1; i >= 0; i--) {
+        swap(arr[0], arr[i]);
+        heapify(arr, 0, i);
+    }
+    
+    return arr;
+}
+
 int main() {
+    vector<int> heap;
     
-    vector<int> heap = {-1};
+    /* operation 1 */
+    // insert(heap, 43);
+    // insert(heap, 100);
+    // insert(heap, 10);
+    // insert(heap, 15);
+    // insert(heap, 45);
+    // insert(heap, 55);
     
-    insert(heap, 60);
-    insert(heap, 50);
-    insert(heap, 40);
-    insert(heap, 30);
-    insert(heap, 20);
-    insert(heap, 55);
-    insert(heap, 70);
+    /* operation 2 */
+    // deleteFromHeap(heap);
     
-    cout << "\n Heap: ";
-    print(heap);
+    // cout << "\n ==> Heap: ";
+    // print(heap);
     
-    heap = {55, 54, 53, 50, 52};
+    /* operation 3 */
+    // vector<int> arr = {1,2,3,4,5,6,7};
     
-    deleteFromHeap(heap);
+    // heapifyArray(arr);
     
-    cout << "\n Heap: ";
-    print(heap);
+    // cout << "\n ==> Heap: ";
+    // print(arr);
+    
+    /* operation 4 */
+    
+    // vector<int> arr = {10, 23, 5, 32, 7};
+    // vector<int> arr = {1,2,3,4,5,6,7};
+    vector<int> arr = {7, 6, 5, 4, 3, 2, 1};
+    vector<int> sorted = heapSort(arr);
+    
+    cout << "\n ==> original: ";
+    print(arr);
+    
+    cout << "\n ==> Sorted: ";
+    print(sorted);
 }
 
 
