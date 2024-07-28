@@ -2,6 +2,7 @@
 - Traverse till root n & eleminate the multiple of prime numbers 
 - why till root n ref: https://youtu.be/7VPA-HjjUmU?si=91VLk_do-qbx601Y
 - Refer code for more
+- This has TC od O(n * (log (log n))) which is less than o (n root n) (brute force approach) ref: https://www.youtube.com/watch?v=eKp56OLhoQs&t=490s
 
 ### Problem: Segmented seive algorithm
 - Segmented seive was introduced to reduce the problem of space complexity in seive algorithem
