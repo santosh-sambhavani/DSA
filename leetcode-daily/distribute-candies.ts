@@ -5,8 +5,8 @@ function distributeCandies(n: number, limit: number): number {
 
         if (remaining > 2*limit) continue;
 
-        const maxForSecond = Math.max(0, remaining-limit);
-        const maxForThird = Math.min(remaining, limit);
+        const maxForSecond = Math.max(0, remaining-limit); // remainig-limit can be negative in case of remaining < limit
+        const maxForThird = Math.min(remaining, limit); // in case of remaining < limit max possible value is remaining only
 
         result += maxForThird - maxForSecond + 1;
     }
