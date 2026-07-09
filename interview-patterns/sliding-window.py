@@ -45,3 +45,37 @@ class Solution:
             right += 1
 
         return maxLen
+
+# Leetocde 76
+class Solution:
+    def addToMap(inputMap, ch):
+        if ch not in map1:
+            inputMap[ch] = 1
+        else:
+            inputMap[ch] += 1
+    
+    def compareMaps(m1, m2):
+        for key in m1:
+            if m2[key] < m1[key]:
+                return false
+        return true
+
+    def minWindow(self, s: str, t: str) -> str:
+        m1 = {}
+        m2 = {}
+        left = 0
+        right = 0
+        minStr = ""
+        length = len(s)
+
+        for ch in t:
+            addToMap(m1, ch)
+
+        while left < right or (right = length - 1 and left = length - len(t)):
+            if compareMaps(m1, m2):
+                minStr = m2[left:right]
+                left += 1
+            else :
+                right += 1
+
+        return minStr
