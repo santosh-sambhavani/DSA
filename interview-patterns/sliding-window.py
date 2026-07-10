@@ -46,36 +46,46 @@ class Solution:
 
         return maxLen
 
-# Leetocde 76
+# # Leetocde 76. Minimum Window Substring
+# Input: s = "ADOBECODEBANC", t = "ABC"
+# Output: "BANC"
+# Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
 class Solution:
-    def addToMap(inputMap, ch):
-        if ch not in map1:
-            inputMap[ch] = 1
-        else:
-            inputMap[ch] += 1
-    
-    def compareMaps(m1, m2):
-        for key in m1:
-            if m2[key] < m1[key]:
-                return false
-        return true
+    def addToMap(self, m, ch):
+        if ch in m:
+            m[ch] += 1
+        else :
+            m[ch] = 1
+
+    def mapMatches(self, m1, m2):
+        for key in m2:
+            if key not in m1:
+                return False
+            elif m1[key] < m2[key]:
+                return False
+        return True
 
     def minWindow(self, s: str, t: str) -> str:
         m1 = {}
         m2 = {}
         left = 0
-        right = 0
+        len1 = len(s)
         minStr = ""
-        length = len(s)
 
         for ch in t:
-            addToMap(m1, ch)
+            self.addToMap(m2, ch)
+        
+        for right in range(0, len1):
+            self.addToMap(m1, s[right])
 
-        while left < right or (right = length - 1 and left = length - len(t)):
-            if compareMaps(m1, m2):
-                minStr = m2[left:right]
+            while self.mapMatches(m1, m2):
+                currStr = s[left:right+1]
+                if minStr == "":
+                    minStr = currStr
+                elif len(minStr) > len(currStr):
+                    minStr = currStr
+                m1[s[left]] -= 1
                 left += 1
-            else :
-                right += 1
-
+                        
         return minStr
+
