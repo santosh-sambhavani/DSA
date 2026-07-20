@@ -73,7 +73,51 @@ def wallsAndGates(grid, rows, cols):
 0 -1 3 4
 '''
 
+# 127. Word Ladder
+# Input: beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]
+# Output: 5
+# Explanation: One shortest transformation sequence is "hit" -> "hot" -> "dot" -> "dog" -> cog", which is 5 words long.
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.children = []
+    
+    def addChild(self, child):
+        self.children.append(child)
 
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        head = Node(beginWord)
+        wordSet = set(wordList)
+        visitedSet = set()
+        queue = [head]
+
+        if endWord not in wordSet:
+            return 0
+
+        while queue:
+            currNode = queue.pop(0)
+            currWord = currNode.val
+            for index in range(len(currWord)):
+                for newChar in 'abcdefghijklmnopqrstuvwxyz':
+                    newWord = currWord[:index] + newChar + currWord[index + 1:]
+                    if newWord in wordSet and newWord not in visitedSet:
+                        newNode = Node(newWord)
+                        currNode.addChild(newNode)
+                        queue.append(newNode)
+                        visitedSet.add(newWord)
+
+        queue = [head]
+        response = 0
+        while queue:
+            response += 1
+            for _ in range(len(queue)):
+                currNode = queue.pop(0)
+                if currNode.val == endWord:
+                    return response
+                queue += currNode.children
+
+        return 0
 
 
 
