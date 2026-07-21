@@ -77,48 +77,34 @@ def wallsAndGates(grid, rows, cols):
 # Input: beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]
 # Output: 5
 # Explanation: One shortest transformation sequence is "hit" -> "hot" -> "dot" -> "dog" -> cog", which is 5 words long.
-class Node:
-    def __init__(self, val):
-        self.val = val
-        self.children = []
-    
-    def addChild(self, child):
-        self.children.append(child)
+from collections import deque
 
 class Solution:
-    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        head = Node(beginWord)
+    def ladderLength(self, beginWord: str, endWord: str, wordList: list[str]) -> int:
         wordSet = set(wordList)
-        visitedSet = set()
-        queue = [head]
-
         if endWord not in wordSet:
             return 0
 
+        # Queue holds pairs of (current_word, current_transformation_length)
+        queue = deque([(beginWord, 1)])
+        
         while queue:
-            currNode = queue.pop(0)
-            currWord = currNode.val
-            for index in range(len(currWord)):
-                for newChar in 'abcdefghijklmnopqrstuvwxyz':
-                    newWord = currWord[:index] + newChar + currWord[index + 1:]
-                    if newWord in wordSet and newWord not in visitedSet:
-                        newNode = Node(newWord)
-                        currNode.addChild(newNode)
-                        queue.append(newNode)
-                        visitedSet.add(newWord)
-
-        queue = [head]
-        response = 0
-        while queue:
-            response += 1
-            for _ in range(len(queue)):
-                currNode = queue.pop(0)
-                if currNode.val == endWord:
-                    return response
-                queue += currNode.children
+            word, depth = queue.popleft()
+            
+            if word == endWord:
+                return depth
+            
+            # Generate all possible single-character transformations
+            for i in range(len(word)):
+                for char in 'abcdefghijklmnopqrstuvwxyz':
+                    next_word = word[:i] + char + word[i+1:]
+                    
+                    if next_word in wordSet:
+                        # Remove from set to serve as visited check and avoid revisiting
+                        wordSet.remove(next_word)
+                        queue.append((next_word, depth + 1))
 
         return 0
-
 
 
 
