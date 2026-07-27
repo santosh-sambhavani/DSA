@@ -1,3 +1,9 @@
+![image](https://assets.leetcode.com/uploads/2021/06/08/waterflow-grid.jpg)
+
+417. Pacific Atlantic Water Flow
+Input: heights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]
+Output: [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
+```python3
 from collections import deque
 from typing import List
 
@@ -38,3 +44,4 @@ class Solution:
         
         # Find intersection and map coordinates directly to lists
         return [list(coord) for coord in pacific_reachable if coord in atlantic_reachable]
+```
