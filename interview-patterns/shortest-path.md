@@ -71,6 +71,12 @@ class Solution:
 ![](https://assets.leetcode.com/uploads/2022/03/18/cheapest-flights-within-k-stops-3drawio.png)
 
 787. Cheapest Flights Within K Stops
+Input: n = 4, flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], src = 0, dst = 3, k = 1
+Output: 700
+Explanation:
+The graph is shown above.
+The optimal path with at most 1 stop from city 0 to 3 is marked in red and has cost 100 + 600 = 700.
+Note that the path through cities [0,1,2,3] is cheaper but is invalid because it uses 2 stops.
 
 ### 1D Array solution 
 ```
@@ -153,4 +159,49 @@ public:
         return -1;
     }
 };
+```
+
+![](https://assets.leetcode.com/uploads/2019/09/20/1558_ex1.png)
+1514. Path with Maximum Probability
+Input: n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2
+Output: 0.25000
+Explanation: There are two paths from start to end, one having a probability of success = 0.2 and the other has 0.5 * 0.5 = 0.25.
+```
+from collections import defaultdict
+import heapq
+
+class Solution:
+    def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], startNode: int, endNode: int) -> float:
+        graph = defaultdict(list)
+        for index in range(len(edges)):
+            u, v = edges[index]
+            w = succProb[index]
+            graph[u].append((v, w))
+            graph[v].append((u, w))
+        
+        visited = set()
+        maxProb = {i: 0 for i in range(n)}
+        pq = [(-1, startNode)] # priority queue with (probability, node)
+        # as this is max heal we will store probabilities in negative
+
+        while pq:
+            currProb, currNode = heapq.heappop(pq)
+            currProb = -currProb
+
+            # print(f"currNode: {currNode}, currProb: {currProb}, neig: {graph[currNode]}")
+
+            if currNode == endNode:
+                return currProb
+
+            if currProb < maxProb[currNode]:
+                continue
+            maxProb[currNode] = currProb
+            visited.add(currNode)
+
+            for neighbour, neighbourProb in graph[currNode]:
+                newProb = currProb * neighbourProb
+                if neighbour not in visited:
+                    heapq.heappush(pq, (-newProb, neighbour))
+
+        return 0
 ```
