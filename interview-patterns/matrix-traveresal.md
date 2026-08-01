@@ -45,3 +45,52 @@ class Solution:
         # Find intersection and map coordinates directly to lists
         return [list(coord) for coord in pacific_reachable if coord in atlantic_reachable]
 ```
+---
+
+<img width="1053" height="653" alt="maxarea1-grid" src="https://github.com/user-attachments/assets/bcb796a6-04b2-4e22-a819-7ae4b009a65e" />
+
+Leetcode 695. Max Area of Island
+Input: grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+Output: 6
+Explanation: The answer is not 11, because the island must be connected 4-directionally.
+```
+from queue import LifoQueue
+
+class Solution:
+    def traverse(self, grid, visited, currRow, currCol, rows, cols) -> int:
+        stack = LifoQueue()
+        stack.put((currRow, currCol))
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        area = 0
+        while not stack.empty():
+            top = stack.get()
+            area += 1
+            # print(f"top: {top}")
+            
+            for x, y in directions:
+                currX, currY = top[0], top[1]
+                newX, newY = currX + x, currY + y
+                newCord = (newX, newY)
+
+                if 0 <= newX < rows and 0 <= newY < cols and newCord not in visited and grid[newX][newY] == 1:
+                    visited.add(newCord)
+                    stack.put(newCord)
+        
+        return area
+
+
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        visited = set()
+        rows, cols = len(grid), len(grid[0])
+        maxArea = 0
+
+        for i in range(rows):
+            for j in range(cols):
+                if (i, j) not in visited and grid[i][j] == 1:
+                    visited.add((i, j))
+                    # print(f"i, j = {(i, j)}")
+                    maxArea = max(maxArea, self.traverse(grid, visited, i, j, rows, cols))
+                    # print(f"maxArea = {maxArea}")
+
+        return maxArea
+```
