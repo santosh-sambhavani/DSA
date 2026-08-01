@@ -47,7 +47,7 @@ class Solution:
 ```
 ---
 
-<img width="1053" height="653" alt="maxarea1-grid" src="https://github.com/user-attachments/assets/bcb796a6-04b2-4e22-a819-7ae4b009a65e" />
+<img width="500" height="300" alt="maxarea1-grid" src="https://github.com/user-attachments/assets/bcb796a6-04b2-4e22-a819-7ae4b009a65e" />
 
 Leetcode 695. Max Area of Island
 Input: grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
@@ -93,4 +93,51 @@ class Solution:
                     # print(f"maxArea = {maxArea}")
 
         return maxArea
+```
+---
+<img width="773" height="333" alt="xogrid" src="https://github.com/user-attachments/assets/6878f4eb-c538-4763-8fd6-48b0c9b1491b" />
+
+Leetcode 130. Surrounded Regions
+Input: board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
+Output: [["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]]
+```
+from queue import LifoQueue
+class Solution:
+    def traverse(self, board, visited, stack, rows, cols):
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        while not stack.empty():
+            top = stack.get()
+            
+            for x, y in directions:
+                currX, currY = top[0], top[1]
+                newX, newY = currX + x, currY + y
+                newCord = (newX, newY)
+
+                if 0 <= newX < rows and 0 <= newY < cols and newCord not in visited and board[newX][newY] == 'O':
+                    visited.add(newCord)
+                    stack.put(newCord)
+
+    def solve(self, board: List[List[str]]) -> None:
+        visited = set()
+        rows, cols = len(board), len(board[0])
+        stack = LifoQueue()
+
+        for i in [0, rows-1]:
+            for j in range(cols):
+                if board[i][j] == 'O':
+                    visited.add((i, j))
+                    stack.put((i, j))
+        
+        for j in [0, cols-1]:
+            for i in range(rows):
+                if board[i][j] == 'O':
+                    visited.add((i, j))
+                    stack.put((i, j))
+
+        self.traverse(board, visited, stack, rows, cols)
+
+        for i in range(rows):
+            for j in range(cols):
+                if (i, j) not in visited:
+                    board[i][j] = 'X'
 ```
