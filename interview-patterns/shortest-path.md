@@ -206,8 +206,9 @@ class Solution:
 
         return 0
 ```
+---
 
-![](https://assets.leetcode.com/uploads/2020/10/04/ex1.png)
+<img width="323" height="323" alt="ex1" src="https://github.com/user-attachments/assets/e53f7cbf-99ba-4d81-812f-3902d721d8f1" />
 
 Leetcode 1631. Path With Minimum Effort
 Input: heights = [[1,2,2],[3,8,2],[5,3,5]]
