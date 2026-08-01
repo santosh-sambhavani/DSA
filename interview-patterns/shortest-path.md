@@ -201,7 +201,7 @@ class Solution:
 
             for neighbour, neighbourProb in graph[currNode]:
                 newProb = currProb * neighbourProb
-                if neighbour not in visited:
+                if neighbour not in visited and maxProb[neighbour] < newProb:
                     heapq.heappush(pq, (-newProb, neighbour))
 
         return 0
