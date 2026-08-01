@@ -217,7 +217,6 @@ Explanation: The route of [1,3,5,3,5] has a maximum absolute difference of 2 in 
 This is better than the route of [1,2,2,2,5], where the maximum absolute difference is 3.
 
 ```
-backup
 import heapq
 
 class Solution:
@@ -233,10 +232,12 @@ class Solution:
         visited = set()
 
         while pq:
-            _, currNode, maxSoFar = heapq.heappop(pq)
+            currDiff, currNode, maxSoFar = heapq.heappop(pq)
             visited.add(currNode)
 
-            if currNode == bottomRight:
+            # print(f"currNode: {currNode}, maxSoFar: {maxSoFar}, currDiff: {currDiff}")
+
+            if currNode == bottomRight and maxSoFar < minEfforts:
                 minEfforts = maxSoFar
 
             for x, y in directions:
@@ -244,10 +245,33 @@ class Solution:
                 newX, newY = currX + x, currY + y
 
                 if 0 <= newX < rows and 0 <= newY < cols and (newX, newY) not in visited:
-                    newDiff = abs(heights[newX][newY] - heights[currX][currX])
+                    newDiff = abs(heights[newX][newY] - heights[currX][currY])
                     newMaxForThisPath = maxSoFar if maxSoFar > newDiff else newDiff
                     heapq.heappush(pq, (newDiff, (newX, newY), newMaxForThisPath))
 
         return minEfforts
+```
+Approach 2
+```
+class Solution(object):
+    def minimumEffortPath(self, heights):
+        m, n = len(heights), len(heights[0])
+        dist = [[math.inf] * n for _ in range(m)]
+        dist[0][0] = 0
+        minHeap = [(0, 0, 0)] # distance, row, col
+        DIR = [0, 1, 0, -1, 0]
 
+        while minHeap:
+            d, r, c = heappop(minHeap)
+            if d > dist[r][c]: continue  # this is an outdated version -> skip it
+            if r == m - 1 and c == n - 1:
+                return d  # Reach to bottom right
+            
+            for i in range(4):
+                nr, nc = r + DIR[i], c + DIR[i+1]
+                if 0 <= nr < m and 0 <= nc < n:
+                    newDist = max(d, abs(heights[nr][nc] - heights[r][c]))
+                    if dist[nr][nc] > newDist:
+                        dist[nr][nc] = newDist
+                        heappush(minHeap, (dist[nr][nc], nr, nc))
 ```
