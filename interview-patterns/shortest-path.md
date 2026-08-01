@@ -70,7 +70,7 @@ class Solution:
 
 ![](https://assets.leetcode.com/uploads/2022/03/18/cheapest-flights-within-k-stops-3drawio.png)
 
-787. Cheapest Flights Within K Stops
+Leetcode 787. Cheapest Flights Within K Stops
 Input: n = 4, flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], src = 0, dst = 3, k = 1
 Output: 700
 Explanation:
@@ -162,7 +162,8 @@ public:
 ```
 
 ![](https://assets.leetcode.com/uploads/2019/09/20/1558_ex1.png)
-1514. Path with Maximum Probability
+
+Leetcode 1514. Path with Maximum Probability
 Input: n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2
 Output: 0.25000
 Explanation: There are two paths from start to end, one having a probability of success = 0.2 and the other has 0.5 * 0.5 = 0.25.
