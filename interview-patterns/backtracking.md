@@ -124,3 +124,41 @@ class Solution:
 
         return results
 ```
+---
+51. N-Queens
+
+```
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        results = []
+        board = [['.' for _ in range(n)] for _ in range(n)]
+        colSet = set()
+        posDiaSet = set()
+        negDiaSet = set()
+
+        def backtrack(row):
+            if row == n:
+                newRes = board.copy()
+                newRes = ["".join(row) for row in newRes]
+                results.append(newRes)
+                return
+
+            for col in range(n):
+                if col in colSet or (row + col) in posDiaSet or (row - col) in negDiaSet:
+                    continue
+                
+                board[row][col] = 'Q'
+                colSet.add(col)
+                posDiaSet.add((row + col))
+                negDiaSet.add((row - col))
+
+                backtrack(row + 1)
+
+                board[row][col] = '.'
+                colSet.remove(col)
+                posDiaSet.remove((row + col))
+                negDiaSet.remove((row - col))
+
+        backtrack(0)
+        return results
+```
