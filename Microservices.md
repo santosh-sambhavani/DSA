@@ -1,3 +1,24 @@
+## What are the advantages of Microservices over Monolithic Architecture?
+Microservices provide greater flexibility, scalability, and maintainability by dividing an application into small independent services.
+
+Advantages:
+- Independent development and deployment.
+- Faster release cycles.
+- Better scalability.
+- Improved fault isolation.
+- Easier maintenance and testing.
+- Supports different technologies and databases.
+
+## Common Challenges
+- Managing communication between multiple services.
+- Ensuring data consistency across services.
+- Increased deployment and operational complexity.
+- Monitoring, logging, and distributed tracing.
+- Handling network latency and failures.
+- Managing security and authentication across services.
+
+---
+
 ## 2PC commit in microservices 
 
 In microservices, the standard rule is **Database-per-Service**. When a single business action must update data across multiple microservice databases simultaneously, you face a core distributed systems problem: **How do you guarantee that either all microservices update their databases or none do?**
